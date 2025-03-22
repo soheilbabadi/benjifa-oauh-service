@@ -1,0 +1,34 @@
+spring:
+    application:
+        name: benjfa-oauth-service
+
+    datasource:
+        url: jdbc:postgresql://localhost:5432/benjifa_oauth_db
+        username: admin
+        password: admin
+        driver-class-name: org.postgresql.Driver
+    jpa:
+        hibernate:
+            ddl-auto: create-drop
+
+server:
+    port: 9000
+
+logging:
+    level:
+        root: warn
+        org.springframework.security: trace
+        org.springframework.security.oauth2: trace
+        org.springframework.web: warn
+    pattern:
+        console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+        correlation: "%X{X-B3-TraceId:-} %X{X-B3-SpanId:-} %X{X-Span-Export:-}"
+    file:
+        name: benjifa-oauth.log
+        path: /var/log/benjfa-oauth-service/
+
+    charset:
+        console: UTF-8
+        file: UTF-8
+
+
