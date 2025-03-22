@@ -9,8 +9,16 @@ spring:
         driver-class-name: org.postgresql.Driver
     jpa:
         hibernate:
-            ddl-auto: create-drop
-
+            ddl-auto: update
+    cache:
+        redis:
+            cache-null-values: false
+            key-prefix: tokens
+            time-to-live: 60000000
+            use-key-prefix: true
+            enable-statistics: true
+            cache-names: benji-cache
+            type: redis
 server:
     port: 9000
 
@@ -31,4 +39,22 @@ logging:
         console: UTF-8
         file: UTF-8
 
+jwt:
+  expiration: 864000000
+  refresh-expiration: 8640000000
+  header: Authorization
+  prefix: Bearer
+  secret: benji-secretN6qMkW-OKUM4MjjnoM-2KHvisVPNYedft1g5z_0g4lrOXXlcSYGjviOZttkCu_JtiQQhitErLeMMtaXsjlMW7Q
+  issuer: benji.social
 
+
+pics:
+  baseUrl: https://picsum.photos/id/0/5000/3333
+
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
